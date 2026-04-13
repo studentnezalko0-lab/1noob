@@ -1,78 +1,66 @@
-:root {
-    --bg: #0a0a0a;
-    --text: #ffffff;
-    --main: #b026ff;
+// 🔥 API KEY ОСЫ ЖЕР
+const API_KEY = "МЫНДА_ӨЗ_API_KEY_ҚОЙ";
+
+// 🔢 САНАУ
+let count = 0;
+
+// 🌙 DARK MODE
+function toggleTheme() {
+    document.body.classList.toggle("dark");
 }
 
-/* 🔴🔵 DARK MODE (қызыл + көк неон) */
-.dark {
-    --bg: #050505;
-    --text: #ffffff;
-    --main: #00f0ff;
-}
+// 🤖 ЧАТ
+async function sendMessage() {
+    let input = document.getElementById("userInput").value;
+    let response = document.getElementById("response");
 
-body {
-    background: var(--bg);
-    color: var(--text);
-    font-family: Arial;
-    padding: 20px;
-    transition: 0.3s;
-}
+    if (input === "") {
+        response.innerText = "Сұрақ жазыңыз!";
+        return;
+    }
 
-h1 {
-    color: var(--main);
-    text-shadow: 0 0 10px var(--main);
-}
+    // санау
+    count++;
+    document.getElementById("count").innerText = count;
 
-.cards {
-    display: flex;
-    gap: 20px;
-}
+    response.innerText = "Жауап күтілуде...";
 
-.card {
-    background: #111;
-    border: 1px solid var(--main);
-    padding: 15px;
-    width: 250px;
-    transition: 0.3s;
-    opacity: 0;
-    transform: translateY(50px);
-}
+    try {
+        let res = await fetch("https://api.openai.com/v1/chat/completions", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+                "Authorization": "Bearer " + API_KEY
+            },
+            body: JSON.stringify({
+                model: "gpt-4o-mini",
+                messages: [
+                    { role: "user", content: input }
+                ]
+            })
+        });
 
-.card.show {
-    opacity: 1;
-    transform: translateY(0);
-}
+        let data = await res.json();
+        response.innerText = data.choices[0].message.content;
 
-.card:hover {
-    box-shadow: 0 0 20px var(--main);
-    transform: translateY(-10px);
-}
-
-a {
-    color: var(--main);
-}
-
-/* Чат */
-.chat {
-    margin-top: 40px;
-}
-
-input {
-    padding: 10px;
-}
-
-button {
-    padding: 10px;
-    background: var(--main);
-    border: none;
-    color: white;
-    cursor: pointer;
-}
-
-/* 📱 мобиль */
-@media (max-width: 600px) {
-    .cards {
-        flex-direction: column;
+    } catch (error) {
+        response.innerText = "Қате шықты!";
     }
 }
+
+// ✨ АНИМАЦИЯ
+const cards = document.querySelectorAll(".card");
+
+function showCards() {
+    cards.forEach(card => {
+        let position = card.getBoundingClientRect().top;
+        let screen = window.innerHeight;
+
+        if (position < screen - 100) {
+            card.classList.add("show");
+        }
+    });
+}
+
+window.addEventListener("load", showCards);
+window.addEventListener("scroll", showCards);
