@@ -1,16 +1,29 @@
+:root {
+    --bg: #0a0a0a;
+    --text: #ffffff;
+    --main: #b026ff;
+}
+
+/* 🔴🔵 DARK MODE (қызыл + көк неон) */
+.dark {
+    --bg: #050505;
+    --text: #ffffff;
+    --main: #00f0ff;
+}
+
 body {
-    background: #0a0a0a;
-    color: #fff;
+    background: var(--bg);
+    color: var(--text);
     font-family: Arial;
     padding: 20px;
+    transition: 0.3s;
 }
 
 h1 {
-    color: #b026ff;
-    text-shadow: 0 0 10px #b026ff;
+    color: var(--main);
+    text-shadow: 0 0 10px var(--main);
 }
 
-/* Карточки */
 .cards {
     display: flex;
     gap: 20px;
@@ -18,7 +31,7 @@ h1 {
 
 .card {
     background: #111;
-    border: 1px solid #b026ff;
+    border: 1px solid var(--main);
     padding: 15px;
     width: 250px;
     transition: 0.3s;
@@ -32,12 +45,12 @@ h1 {
 }
 
 .card:hover {
-    box-shadow: 0 0 20px #b026ff;
+    box-shadow: 0 0 20px var(--main);
     transform: translateY(-10px);
 }
 
 a {
-    color: #b026ff;
+    color: var(--main);
 }
 
 /* Чат */
@@ -47,18 +60,17 @@ a {
 
 input {
     padding: 10px;
-    width: 250px;
 }
 
 button {
     padding: 10px;
-    background: #b026ff;
+    background: var(--main);
     border: none;
     color: white;
     cursor: pointer;
 }
 
-/* Мобиль */
+/* 📱 мобиль */
 @media (max-width: 600px) {
     .cards {
         flex-direction: column;
