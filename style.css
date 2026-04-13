@@ -1,0 +1,66 @@
+body {
+    background: #0a0a0a;
+    color: #fff;
+    font-family: Arial;
+    padding: 20px;
+}
+
+h1 {
+    color: #b026ff;
+    text-shadow: 0 0 10px #b026ff;
+}
+
+/* Карточки */
+.cards {
+    display: flex;
+    gap: 20px;
+}
+
+.card {
+    background: #111;
+    border: 1px solid #b026ff;
+    padding: 15px;
+    width: 250px;
+    transition: 0.3s;
+    opacity: 0;
+    transform: translateY(50px);
+}
+
+.card.show {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.card:hover {
+    box-shadow: 0 0 20px #b026ff;
+    transform: translateY(-10px);
+}
+
+a {
+    color: #b026ff;
+}
+
+/* Чат */
+.chat {
+    margin-top: 40px;
+}
+
+input {
+    padding: 10px;
+    width: 250px;
+}
+
+button {
+    padding: 10px;
+    background: #b026ff;
+    border: none;
+    color: white;
+    cursor: pointer;
+}
+
+/* Мобиль */
+@media (max-width: 600px) {
+    .cards {
+        flex-direction: column;
+    }
+}
