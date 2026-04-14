@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="kk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Әзірлеушіге арналған ЖИ-құралдары</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="header">
+        <button class="theme-btn" onclick="toggleTheme()">🌙 Қараңғы тақырып</button>
+        <div class="counter">
+            📊 Сұраныс саны: <span id="count">0</span>
+        </div>
+    </div>
+
+    <h1>🤖 Әзірлеушіге арналған ЖИ-құралдары</h1>
+
+    <!-- Карточкалар -->
+    <div class="cards">
+        <div class="card">
+            <h2>💬 ChatGPT</h2>
+            <p>OpenAI компаниясының дамыған тілдік моделі. Код жазуға, сұрақтарға жауап беруге, мәтін құрастыруға көмектеседі.</p>
+            <p><strong>Не істей алады:</strong> Кодты түсіндіру, дебагтау, құжаттама жазу, идеяларды талқылау.</p>
+            <a href="https://chat.openai.com" target="_blank">🔗 Ресми сайт →</a>
+        </div>
+
+        <div class="card">
+            <h2>👨‍💻 GitHub Copilot</h2>
+            <p>Visual Studio Code-қа арналған ЖИ-көмекші. Кодты автоматты түрде толықтырады және функцияларды ұсынады.</p>
+            <p><strong>Не істей алады:</strong> Кодты болжау, тесттер жазу, қателерді түзетуге көмектесу.</p>
+            <a href="https://github.com/features/copilot" target="_blank">🔗 Ресми сайт →</a>
+        </div>
+
+        <div class="card">
+            <h2>🧠 Claude</h2>
+            <p>Anthropic компаниясының қауіпсіз және сенімді ЖИ-сы. Ұзақ контексті талдауға қабілетті.</p>
+            <p><strong>Не істей алады:</strong> Үлкен мәтіндерді талдау, кодты түсіндіру, құжаттармен жұмыс.</p>
+            <a href="https://claude.ai" target="_blank">🔗 Ресми сайт →</a>
+        </div>
+    </div>
+
+    <!-- Тәжірибе -->
+    <h2>📝 Менің тәжірибем</h2>
+    <div class="experience">
+        <p><strong>Қолданған құралдар:</strong> ChatGPT, GitHub Copilot</p>
+        <p><strong>Жұмысты орындауда қандай құрал көмектесті?</strong><br>
+        ChatGPT маған API интеграциясын түсінуге көп көмектесті. Асинхронды функциялар мен fetch сұраныстарын түсіндірді.</p>
+        
+        <p><strong>ЖИ нені дұрыс немесе ыңғайсыз жасады?</strong><br>
+        Дұрысы: Негізгі код құрылымын тез ұсынды. Ыңғайсызы: API кілтін орнату және қателерді өңдеу толық түсіндірілмеді. Мен оны өз қателіктерім арқылы түзеттім.</p>
+        
+        <p><strong>ЖИ 5 жылдан кейін әзірлеуші мамандығын қалай өзгертеді?</strong><br>
+        ЖИ күнделікті рутиналық тапсырмаларды (кодтың негізгі бөлігін жазу, тесттер жасау) автоматтандырады. Бірақ архитектуралық шешімдер, күрделі алгоритмдер, қауіпсіздік мәселелері әзірлеушілердің жауапкершілігінде қалады. ЖИ-мен жұмыс істей білу - жаңа міндетті дағдыға айналады.</p>
+    </div>
+
+    <!-- Чат -->
+    <div class="chat">
+        <h2>💬 ЖИ чат (OpenAI API)</h2>
+        <div class="chat-container">
+            <input type="text" id="userInput" placeholder="Сұрақ жаз... (мысалы: JavaScript-те массивті қалай сұрыптаймын?)">
+            <button onclick="sendMessage()">📤 Жіберу</button>
+        </div>
+        <div id="response" class="response-box">
+            💡 Сұрағыңызды жазыңыз...
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
