@@ -1,0 +1,244 @@
+:root {
+    --bg: #f5f5f5;
+    --text: #1a1a1a;
+    --main: #6c63ff;
+    --card-bg: #ffffff;
+    --border: #e0e0e0;
+}
+
+.dark {
+    --bg: #1a1a1a;
+    --text: #ffffff;
+    --main: #00f0ff;
+    --card-bg: #2d2d2d;
+    --border: #404040;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    padding: 20px;
+    max-width: 1200px;
+    margin: 0 auto;
+    transition: all 0.3s ease;
+}
+
+/* Басты элементтер */
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 30px;
+    flex-wrap: wrap;
+    gap: 15px;
+}
+
+h1 {
+    color: var(--main);
+    text-align: center;
+    margin-bottom: 40px;
+    font-size: 2.5rem;
+    text-shadow: 0 0 15px rgba(108, 99, 255, 0.3);
+}
+
+h2 {
+    color: var(--main);
+    margin: 30px 0 20px 0;
+}
+
+/* Карточкалар */
+.cards {
+    display: flex;
+    gap: 30px;
+    margin-bottom: 40px;
+    flex-wrap: wrap;
+}
+
+.card {
+    background: var(--card-bg);
+    border: 2px solid var(--main);
+    border-radius: 15px;
+    padding: 25px;
+    flex: 1;
+    min-width: 250px;
+    transition: all 0.3s ease;
+    opacity: 0;
+    transform: translateY(50px);
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+}
+
+.card.show {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 10px 30px rgba(108, 99, 255, 0.3);
+    border-color: var(--main);
+}
+
+.card h2 {
+    margin-top: 0;
+    margin-bottom: 15px;
+}
+
+.card p {
+    margin-bottom: 15px;
+    line-height: 1.5;
+}
+
+.card a {
+    color: var(--main);
+    text-decoration: none;
+    font-weight: bold;
+    display: inline-block;
+    margin-top: 10px;
+}
+
+.card a:hover {
+    text-decoration: underline;
+}
+
+/* Тәжірибе бөлімі */
+.experience {
+    background: var(--card-bg);
+    border-radius: 15px;
+    padding: 25px;
+    margin-bottom: 30px;
+    border-left: 5px solid var(--main);
+}
+
+.experience p {
+    margin-bottom: 15px;
+    line-height: 1.6;
+}
+
+/* Чат бөлімі */
+.chat {
+    background: var(--card-bg);
+    border-radius: 15px;
+    padding: 25px;
+    margin-top: 20px;
+}
+
+.chat-container {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 20px;
+    flex-wrap: wrap;
+}
+
+#userInput {
+    flex: 1;
+    padding: 12px;
+    border: 2px solid var(--border);
+    border-radius: 8px;
+    background: var(--bg);
+    color: var(--text);
+    font-size: 16px;
+}
+
+#userInput:focus {
+    outline: none;
+    border-color: var(--main);
+}
+
+button {
+    padding: 12px 24px;
+    background: var(--main);
+    border: none;
+    border-radius: 8px;
+    color: white;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: bold;
+    transition: all 0.3s ease;
+}
+
+button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(108, 99, 255, 0.4);
+}
+
+.theme-btn {
+    background: transparent;
+    border: 2px solid var(--main);
+    color: var(--main);
+}
+
+.theme-btn:hover {
+    background: var(--main);
+    color: white;
+}
+
+.counter {
+    font-size: 18px;
+    font-weight: bold;
+    padding: 8px 16px;
+    background: var(--card-bg);
+    border-radius: 20px;
+    border: 1px solid var(--main);
+}
+
+.response-box {
+    background: var(--bg);
+    border-radius: 10px;
+    padding: 20px;
+    min-height: 100px;
+    border: 1px solid var(--border);
+    line-height: 1.6;
+}
+
+.loading-spinner {
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    border: 3px solid var(--border);
+    border-top-color: var(--main);
+    border-radius: 50%;
+    animation: spin 0.8s linear infinite;
+}
+
+@keyframes spin {
+    to { transform: rotate(360deg); }
+}
+
+/* Мобильді құрылғылар */
+@media (max-width: 768px) {
+    body {
+        padding: 15px;
+    }
+    
+    h1 {
+        font-size: 1.8rem;
+    }
+    
+    .cards {
+        flex-direction: column;
+    }
+    
+    .card {
+        min-width: auto;
+    }
+    
+    .header {
+        flex-direction: column;
+        align-items: stretch;
+    }
+    
+    .chat-container {
+        flex-direction: column;
+    }
+    
+    button {
+        width: 100%;
+    }
+}
