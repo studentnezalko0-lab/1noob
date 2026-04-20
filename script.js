@@ -1,6 +1,6 @@
 // 🔥 Gemini API KEY - Google AI Studio-дан алыңыз
 // Мына сайттан алыңыз: https://aistudio.google.com/
-const API_KEY = "OPENAI_API_KEY1";  // AIzaSy... түрінде болады
+const API_KEY = "AIzaSyBiblgvT_aIEfc_hKzVvAOUICoIiIpodU8";  // AIzaSy... түрінде болады
 
 // 🔢 Сұраныстар санауышы
 let requestCount = 0;
