@@ -1,5 +1,5 @@
 let requestCount = 0;
-let GROQ_API_KEY = "    ";
+let GROQ_API_KEY = "  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  ";
 
 function setupAPIKey() {
     const savedKey = localStorage.getItem('groq_api_key');
