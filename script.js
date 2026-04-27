@@ -1,5 +1,5 @@
 let requestCount = 0;
-let GROQ_API_KEY = "";
+let GROQ_API_KEY = "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";
 
 function toggleTheme() {
     document.body.classList.toggle("dark");
