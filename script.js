@@ -12,7 +12,7 @@ function toggleTheme() {
     }
 }
 
-const API_KEY = "YOUR_API_KEY_HERE";
+const API_KEY = " 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 ";
 
 async function sendMessage() {
     const input = document.getElementById("userInput");
