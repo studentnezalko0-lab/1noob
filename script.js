@@ -1,34 +1,5 @@
 let requestCount = 0;
-let GROQ_API_KEY = "";
-
-function setupAPIKey() {
-    const savedKey = localStorage.getItem('groq_api_key');
-    if (savedKey) {
-        GROQ_API_KEY = savedKey;
-        showMessage("Groq API ключі дайын");
-    } else {
-        const userKey = prompt("Groq API ключін енгізіңіз (тегін):\nhttps://console.groq.com");
-        if (userKey && userKey.trim()) {
-            GROQ_API_KEY = userKey.trim();
-            localStorage.setItem('groq_api_key', GROQ_API_KEY);
-            showMessage("Groq API ключі сақталды");
-        } else {
-            showMessage("API ключі енгізілмеді. Чат жұмыс істемейді", true);
-        }
-    }
-}
-
-function showMessage(msg, isError = false) {
-    const responseDiv = document.getElementById("response");
-    if (responseDiv) {
-        responseDiv.innerHTML = isError ? "Қате: " + msg : "Ақпарат: " + msg;
-        setTimeout(() => {
-            if (responseDiv.innerHTML.includes(msg)) {
-                responseDiv.innerHTML = "Сұрағыңызды жазыңыз...";
-            }
-        }, 4000);
-    }
-}
+let GROQ_API_KEY = "gsk_тудыратын_кілтіңізді_осы_жерге_жазыңыз";
 
 function toggleTheme() {
     document.body.classList.toggle("dark");
@@ -52,7 +23,7 @@ async function sendMessage() {
     }
     
     if (!GROQ_API_KEY) {
-        responseDiv.innerHTML = "API ключі жоқ. Бетті жаңартып, ключіңізді енгізіңіз.";
+        responseDiv.innerHTML = "API ключі жоқ. Кодтан ключіңізді тексеріңіз.";
         return;
     }
 
@@ -86,13 +57,6 @@ async function sendMessage() {
 
         if (!response.ok) {
             const errorData = await response.json();
-            
-            if (response.status === 401 || response.status === 403) {
-                localStorage.removeItem('groq_api_key');
-                GROQ_API_KEY = "";
-                throw new Error("API ключі жарамсыз. Бетті жаңартып, жаңа ключ енгізіңіз.");
-            }
-            
             throw new Error(errorData.error?.message || "Қате " + response.status);
         }
 
@@ -139,7 +103,6 @@ function setupCardAnimations() {
 }
 
 document.addEventListener("DOMContentLoaded", function() {
-    setupAPIKey();
     setupEnterKey();
     setupCardAnimations();
 });
