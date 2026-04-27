@@ -23,7 +23,7 @@ async function sendMessage() {
     }
     
     if (!GROQ_API_KEY) {
-        responseDiv.innerHTML = "API ключі жоқ. Кодтан ключіңізді тексеріңіз.";
+        responseDiv.innerHTML = "API ключін енгізу үшін бетті жаңартыңыз";
         return;
     }
 
@@ -31,27 +31,25 @@ async function sendMessage() {
     const countSpan = document.getElementById("count");
     if (countSpan) countSpan.innerText = requestCount;
 
-    responseDiv.innerHTML = 'Ойлануда...';
+    responseDiv.innerHTML = "Ойлануда...";
     input.value = "";
 
     try {
         const response = await fetch("https://api.groq.com/openai/v1/chat/completions", {
             method: "POST",
             headers: {
-                "Authorization": "Bearer " + GROQ_API_KEY,
                 "Content-Type": "application/json"
             },
             body: JSON.stringify({
-                model: "qwen-qwen-32b",
+                model: "mixtral-8x7b-32768",
                 messages: [
                     {
                         role: "user",
-                        content: "Қазақ тілінде жауап бер. Сұрақ: " + question
+                        content: question
                     }
                 ],
                 temperature: 0.7,
-                max_tokens: 2048,
-                top_p: 0.95
+                max_tokens: 1024
             })
         });
 
@@ -64,14 +62,23 @@ async function sendMessage() {
         const answer = data.choices?.[0]?.message?.content;
 
         if (answer) {
-            responseDiv.innerHTML = "<b>Groq жауабы:</b><br><br>" + answer.replace(/\n/g, '<br>');
+            responseDiv.innerHTML = "<b>Groq жауабы:</b><br><br>" + answer.replace(/\n/g, "<br>");
         } else {
-            responseDiv.innerHTML = "Жауап алынбады. Қайталап көріңіз.";
+            responseDiv.innerHTML = "Жауап алынбады";
         }
 
     } catch (error) {
-        console.error("Groq API қатесі:", error);
+        console.error(error);
         responseDiv.innerHTML = "Қате: " + error.message;
+    }
+}
+
+function setAPIKey() {
+    const key = prompt("Groq API ключін енгізіңіз (https://console.groq.com):", "");
+    if (key && key.trim()) {
+        GROQ_API_KEY = key.trim();
+        localStorage.setItem("groq_key", GROQ_API_KEY);
+        document.getElementById("response").innerHTML = "Ключ сақталды! Енді сұрақ қоя аласыз.";
     }
 }
 
@@ -105,4 +112,13 @@ function setupCardAnimations() {
 document.addEventListener("DOMContentLoaded", function() {
     setupEnterKey();
     setupCardAnimations();
+    
+    const savedKey = localStorage.getItem("groq_key");
+    if (savedKey) {
+        GROQ_API_KEY = savedKey;
+    } else {
+        setTimeout(function() {
+            setAPIKey();
+        }, 500);
+    }
 });
