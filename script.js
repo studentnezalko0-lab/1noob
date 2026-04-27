@@ -1,5 +1,5 @@
 let requestCount = 0;
-let GROQ_API_KEY = "";
+let GROQ_API_KEY = "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";  // Осы жерге GroqCloud-тан алған кілтіңізді қойыңыз
 
 function toggleTheme() {
     document.body.classList.toggle("dark");
@@ -22,8 +22,8 @@ async function sendMessage() {
         return;
     }
     
-    if (!GROQ_API_KEY) {
-        responseDiv.innerHTML = "API ключін енгізу үшін бетті жаңартыңыз";
+    if (!GROQ_API_KEY || GROQ_API_KEY === "gsk_сіздің_кілтіңіз") {
+        responseDiv.innerHTML = "API ключі орнатылмаған. script.js ішінен GROQ_API_KEY мәнін толтырыңыз";
         return;
     }
 
@@ -38,10 +38,11 @@ async function sendMessage() {
         const response = await fetch("https://api.groq.com/openai/v1/chat/completions", {
             method: "POST",
             headers: {
+                "Authorization": "Bearer " + GROQ_API_KEY,
                 "Content-Type": "application/json"
             },
             body: JSON.stringify({
-                model: "mixtral-8x7b-32768",
+                model: "llama-3.3-70b-versatile",
                 messages: [
                     {
                         role: "user",
@@ -68,17 +69,8 @@ async function sendMessage() {
         }
 
     } catch (error) {
-        console.error(error);
+        console.error("Groq API қатесі:", error);
         responseDiv.innerHTML = "Қате: " + error.message;
-    }
-}
-
-function setAPIKey() {
-    const key = prompt("Groq API ключін енгізіңіз (https://console.groq.com):", "");
-    if (key && key.trim()) {
-        GROQ_API_KEY = key.trim();
-        localStorage.setItem("groq_key", GROQ_API_KEY);
-        document.getElementById("response").innerHTML = "Ключ сақталды! Енді сұрақ қоя аласыз.";
     }
 }
 
@@ -112,13 +104,4 @@ function setupCardAnimations() {
 document.addEventListener("DOMContentLoaded", function() {
     setupEnterKey();
     setupCardAnimations();
-    
-    const savedKey = localStorage.getItem("groq_key");
-    if (savedKey) {
-        GROQ_API_KEY = savedKey;
-    } else {
-        setTimeout(function() {
-            setAPIKey();
-        }, 500);
-    }
 });
