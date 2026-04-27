@@ -1,5 +1,5 @@
 let requestCount = 0;
-let GROQ_API_KEY = "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";  // Осы жерге GroqCloud-тан алған кілтіңізді қойыңыз
+let GROQ_API_KEY = "";  // Осы жерге GroqCloud-тан алған кілтіңізді қойыңыз
 
 function toggleTheme() {
     document.body.classList.toggle("dark");
