@@ -1,5 +1,5 @@
 let requestCount = 0;
-let GROQ_API_KEY = ""; // Бос қалдырыңыз - апай өзі енгізеді
+let GROQ_API_KEY = ""; 
 
 function toggleTheme() {
     document.body.classList.toggle("dark");
