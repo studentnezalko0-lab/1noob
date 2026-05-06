@@ -8,60 +8,96 @@
 </head>
 <body>
     <div class="header">
-        <button class="theme-btn" onclick="toggleTheme()">Қараңғы тақырып</button>
+        <button class="theme-btn" onclick="toggleTheme()">🌙 Қараңғы тақырып</button>
         <div class="counter">
-            Сұраныс саны: <span id="count">0</span>
+            📊 Сұраныс саны: <span id="count">0</span>
         </div>
     </div>
 
-    <h1>Әзірлеушіге арналған ЖИ-құралдары</h1>
+    <h1>🤖 Әзірлеушіге арналған ЖИ-құралдары</h1>
 
+    <!-- Карточкалар -->
     <div class="cards">
         <div class="card">
-            <h2>Grok</h2>
+            <h2>🟢 Grok</h2>
             <p>xAI компаниясының (Илон Маск) дамыған тілдік моделі. Нақты уақытта X (Twitter) деректеріне қол жеткізе алады.</p>
-            <p><strong>Grok:</strong> Нақты уақыттағы ақпаратты өңдейді. басқа ЖИ қарағанда тәуелділек сөйлейді бірақ сол үшін көп галлюцинация ұстайды.</p>
-            <a href="https://grok.ai" target="_blank">Ресми сайт →</a>
+            <a href="https://x.ai" target="_blank">🔗 xAI ресми сайт →</a>
         </div>
-
         <div class="card">
-            <h2>Gemini</h2>
+            <h2>🔵 Gemini</h2>
             <p>Google компаниясының дамыған мультимодальды ЖИ-сы. Мәтін, сурет, видео, аудио өңдей алады.</p>
-            <p><strong>Gemini:</strong> Кодты түсіндіру, дебагтау, құжаттама жазу, суреттен ақпарат оқу, YouTube видеоларын талдау.</p>
-            <a href="https://gemini.google.com" target="_blank">Ресми сайт →</a>
+            <a href="https://gemini.google.com" target="_blank">🔗 Ресми сайт →</a>
         </div>
-
         <div class="card">
-            <h2>DeepSeek</h2>
+            <h2>🔍 DeepSeek</h2>
             <p>Қытайлық DeepSeek компаниясының тегін және ашық кодты ЖИ-сы. Өте ұзын контексті (1M+ токен) өңдей алады.</p>
-            <p><strong>DeepSeek:</strong> Үлкен кітаптарды бірден оқу, кодты талдау, математикалық есептер орындайды. көп файлды жүктеп өндейді тегін.</p>
-            <a href="https://deepseek.com" target="_blank">Ресми сайт →</a>
+            <a href="https://deepseek.com" target="_blank">🔗 Ресми сайт →</a>
         </div>
     </div>
 
-    <h2>Менің тәжірибем</h2>
+    <!-- Тәжірибе -->
+    <h2>📝 Менің тәжірибем</h2>
     <div class="experience">
-        <p><strong>Қолданған құралдар:</strong> ChatGPT, Gemini, DeepSeek</p>
-        
-        <p><strong>Жұмысты орындауда қандай құрал көмектесті?</strong><br>
-        Gemini маған API интеграциясын түсінуге көп көмектесті. DeepSeek ұзын құжаттарды талдауда тиімді болды.</p>
-        
-        <p><strong>ЖИ нені дұрыс немесе ыңғайсыз жасады?</strong><br>
-        <strong>Дұрысы:</strong> Негізгі код құрылымын тез ұсынды, қазақ тілінде жауап берді.  <br>
-        <strong>Ыңғайсызы:</strong> API кілтін орнату: Мен Google AI Studio арқылы API кілтін алғым келді бірақ ол істеу үшін 30 долор толтыру керек деген шарт тек карточка тіркегенсон шықты.</p>
-        
-        <p><strong>ЖИ 5 жылдан кейін әзірлеуші мамандығын қалай өзгертеді?</strong><br>
-        ЖИ күнделікті рутиналық тапсырмаларды автоматтандырады. Бірақ архитектуралық шешімдер, алгоритмдерді оңтайландыру, қауіпсіздік мәселелері әзірлеушілердің жауапкершілігінде қалады. көп ЖИ жаңа шығады және көбі тез жабылады ал тірі қалғандар чат гпт секілділер өздеріне ат жасап жаңа функциялар әкеледі.</p>
+        <p><strong>Қолданған құралдар:</strong> ChatGPT, Gemini, DeepSeek, Grok, Groq</p>
+        <p><strong>Жұмысты орындауда қандай құрал көмектесті?</strong><br>Groq өте жылдам жауап береді, Gemini API интеграциясына көмектесті.</p>
+        <p><strong>ЖИ 5 жылдан кейін әзірлеуші мамандығын қалай өзгертеді?</strong><br>ЖИ күнделікті рутиналық тапсырмаларды автоматтандырады.</p>
     </div>
 
+    <!-- API Key енгізу бөлімі -->
+    <div class="api-section">
+        <h2>🔑 API Key таңдау</h2>
+        
+        <div class="provider-selector">
+            <label class="provider-option">
+                <input type="radio" name="apiProvider" value="groq" checked onchange="switchProvider('groq')">
+                <span class="provider-label">🟣 Groq (ең жылдам, тегін)</span>
+            </label>
+            <label class="provider-option">
+                <input type="radio" name="apiProvider" value="gemini" onchange="switchProvider('gemini')">
+                <span class="provider-label">🔵 Google Gemini</span>
+            </label>
+            <label class="provider-option">
+                <input type="radio" name="apiProvider" value="grok" onchange="switchProvider('grok')">
+                <span class="provider-label">🟢 xAI Grok</span>
+            </label>
+        </div>
+        
+        <div class="api-container">
+            <input type="text" id="apiKeyInput" placeholder="API ключін тікелей енгізіңіз..." class="api-input">
+            <button onclick="saveApiKey()" class="api-save-btn">💾 Сақтау және қолдану</button>
+            <button onclick="showApiInstructions()" class="api-help-btn">❓ Қалай алуға болады?</button>
+        </div>
+        <div id="apiStatus" class="api-status"></div>
+        
+        <!-- ҚОЛДАНУДАҒЫ КЛЮЧТІ КӨРСЕТУ -->
+        <div id="activeKeyInfo" class="active-key-info" style="display: none;">
+            🔑 <strong>Қолданыстағы ключ:</strong> <span id="activeKeyDisplay"></span>
+            <button onclick="clearApiKey()" class="clear-key-btn">🗑️ Өшіру</button>
+        </div>
+        
+        <div id="groqInfo" class="provider-info">
+            💡 <strong>Groq туралы:</strong> API ключі <code>gsk_...</code> түрінде басталады. 
+            Толығымен тегін! 🔥 <a href="https://console.groq.com" target="_blank">console.groq.com</a>
+        </div>
+        <div id="geminiInfo" class="provider-info" style="display: none;">
+            💡 <strong>Gemini туралы:</strong> API ключі <code>AIza...</code> түрінде басталады.
+            <a href="https://makersuite.google.com/app/apikey" target="_blank">Google AI Studio</a>
+        </div>
+        <div id="grokInfo" class="provider-info" style="display: none;">
+            💡 <strong>Grok туралы:</strong> API ключі <code>xai-...</code> түрінде басталады.
+            <a href="https://console.x.ai" target="_blank">console.x.ai</a>
+        </div>
+    </div>
+
+    <!-- Чат -->
     <div class="chat">
-        <h2>ЖИ чат (Groq API)</h2>
+        <h2>💬 ЖИ чат</h2>
         <div class="chat-container">
-            <input type="text" id="userInput" placeholder="Сурак жаз...">
-            <button onclick="sendMessage()">Жіберу</button>
+            <input type="text" id="userInput" placeholder="Сұрақ жаз...">
+            <button onclick="sendMessage()">📤 Жіберу</button>
         </div>
         <div id="response" class="response-box">
-            Сурагынызды жазыныз...
+            💡 API провайдерін таңдап, ключіңізді енгізіңіз...
         </div>
     </div>
 
